@@ -11,7 +11,7 @@ public interface Animal {
     Integer getAge();
     void throwException();
     @IsHungry
-    default boolean isHungry(Animal animal) {
+    default boolean isHungry() {
         Random random = new Random();
         return random.nextInt(2) == 0;
     };

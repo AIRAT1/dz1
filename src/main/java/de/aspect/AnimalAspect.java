@@ -10,25 +10,25 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class AnimalAspect {
-    @Pointcut("execution(* de.zoo.Animal.voice())")
-    public void voicePoint() {
-    }
+//    @Pointcut("execution(* de.zoo.Animal.voice())")
+//    public void voicePoint() {
+//    }
 
     @Pointcut("execution (* de.zoo.*.*(..))")
     public void anyAnimalMethod() {
     }
 
-    @Pointcut("within (de.zoo.*)")
-    public void anyAnimalMethodWithWithIn() {
-    }
-
-    @Pointcut("@annotation(de.aspect.annotationMarker.Marker)")
-    public void annotationPointcut() {
-    }
-
-    @Pointcut("@within(de.aspect.annotationMarker.Marker)")
-    public void annotationWithInPointcut() {
-    }
+//    @Pointcut("within (de.zoo.*)")
+//    public void anyAnimalMethodWithWithIn() {
+//    }
+//
+//    @Pointcut("@annotation(de.aspect.annotationMarker.Marker)")
+//    public void annotationPointcut() {
+//    }
+//
+//    @Pointcut("@within(de.aspect.annotationMarker.Marker)")
+//    public void annotationWithInPointcut() {
+//    }
 
     @Pointcut("args(food)")
     public void withArg(Food food) {
@@ -44,20 +44,20 @@ public class AnimalAspect {
         System.out.println(food.toString());
     }
 
-    @Before(value = "annotationWithInPointcut()")
-    public void beforeServiceCall(JoinPoint joinPoint) {
-        System.out.println("beforeVoice");
-    }
+//    @Before(value = "annotationWithInPointcut()")
+//    public void beforeServiceCall(JoinPoint joinPoint) {
+//        System.out.println("beforeVoice");
+//    }
 
-    @AfterReturning(value = "execution(* de.zoo.Animal.isHungry(..))", returning = "isHungry")
+    @AfterReturning(value = "execution(* de.zoo.Animal.isHungry())", returning = "isHungry")
     public void isHungry(boolean isHungry) {
-        System.out.println(isHungry);
+//        System.out.println(isHungry);
     }
 
-    @AfterReturning(value = "execution(* de.zoo.Animal.getAge())", returning = "age")
-    public void afterReturningExample(Integer age) {
-        System.out.println(age);
-    }
+//    @AfterReturning(value = "execution(* de.zoo.Animal.getAge())", returning = "age")
+//    public void afterReturningExample(Integer age) {
+//        System.out.println(age);
+//    }
 
 //    @AfterThrowing(value = "execution(* de.zoo.Animal.throwException())", throwing = "e")
 //    public void afterThrowing(Throwable e) {
