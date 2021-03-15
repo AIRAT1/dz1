@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @IsHungry
-public class Dog implements Animal {
+public class Cow implements Animal {
     private Food food;
-    private Integer age = 5;
+    private Integer age = 10;
 
     @Override
     public void voice() {
-        System.out.println("gav");
+        System.out.println("mu");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package de.aspect;
 
+import de.zoo.Animal;
 import de.zoo.food.Food;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -33,10 +34,10 @@ public class AnimalAspect {
     public void withArg(Food food) {
     }
 
-    @Before(value = "voicePoint()")
-    public void beforeVoice(JoinPoint joinPoint) {
-        System.out.println("beforeVoice");
-    }
+//    @Before(value = "voicePoint()")
+//    public void beforeVoice(JoinPoint joinPoint) {
+//        System.out.println("beforeVoice");
+//    }
 
     @Before(value = "anyAnimalMethod() && withArg(food)", argNames = "food")
     public void beforeSetFood(Food food) {
@@ -48,30 +49,35 @@ public class AnimalAspect {
         System.out.println("beforeVoice");
     }
 
+    @AfterReturning(value = "execution(* de.zoo.Animal.isHungry(..))", returning = "isHungry")
+    public void isHungry(boolean isHungry) {
+        System.out.println(isHungry);
+    }
+
     @AfterReturning(value = "execution(* de.zoo.Animal.getAge())", returning = "age")
     public void afterReturningExample(Integer age) {
         System.out.println(age);
     }
 
-    @AfterThrowing(value = "execution(* de.zoo.Animal.throwException())", throwing = "e")
-    public void afterThrowing(Throwable e) {
-        System.out.println(e.getMessage());
-    }
+//    @AfterThrowing(value = "execution(* de.zoo.Animal.throwException())", throwing = "e")
+//    public void afterThrowing(Throwable e) {
+//        System.out.println(e.getMessage());
+//    }
 
-    @Around(value = "anyAnimalMethod() && withArg(food)", argNames = "joinPoint,food")
-    public Object around(ProceedingJoinPoint joinPoint, Food food) throws Throwable {
-        Object result = null;
-        //before
-        try {
-            result = joinPoint.proceed();
-            //after returning
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            //after throwing
-            throw throwable;
-        }finally {
-            //after
-        }
-        return result;
-    }
+//    @Around(value = "anyAnimalMethod() && withArg(food)", argNames = "joinPoint,food")
+//    public Object around(ProceedingJoinPoint joinPoint, Food food) throws Throwable {
+//        Object result = null;
+//        //before
+//        try {
+//            result = joinPoint.proceed();
+//            //after returning
+//        } catch (Throwable throwable) {
+//            throwable.printStackTrace();
+//            //after throwing
+//            throw throwable;
+//        }finally {
+//            //after
+//        }
+//        return result;
+//    }
 }

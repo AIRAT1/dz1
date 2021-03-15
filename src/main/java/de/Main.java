@@ -17,14 +17,36 @@ public class Main {
         ApplicationContext context = getAnnotationContext("annotationConfiguration");
         AnimalService animalService = context.getBean("animalServiceImpl", AnimalService.class);
         Animal cat = context.getBean("cat", Animal.class);
+        Animal dog = context.getBean("dog", Animal.class);
+        Animal cow = context.getBean("cow", Animal.class);
         animalService.feedAnimal(
                 Food.builder()
-                        .expiredDate(LocalDateTime.now().plusHours(3))
+                        .expiredDate(LocalDateTime.now().plusMinutes(3L))
                         .foodType(FoodType.FISH)
                         .value(BigDecimal.valueOf(10)).build(),
                 cat
         );
-        cat.getAge();
+        animalService.feedAnimal(
+                Food.builder()
+                        .expiredDate(LocalDateTime.now().plusMinutes(3L))
+                        .foodType(FoodType.MEAT)
+                        .value(BigDecimal.valueOf(10)).build(),
+                dog
+        );
+        animalService.feedAnimal(
+                Food.builder()
+                        .expiredDate(LocalDateTime.now().plusMinutes(3L))
+                        .foodType(FoodType.MEAT)
+                        .value(BigDecimal.valueOf(10)).build(),
+                cow
+        );
+//        cat.getAge();
+//        dog.getAge();
+//        cow.getAge();
+
+        cat.isHungry(cat);
+        dog.isHungry(dog);
+        cow.isHungry(cow);
 //        cat.throwException();
     }
 
