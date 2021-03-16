@@ -25,6 +25,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     private void logMethod(Food food, Animal animal) {
+        System.out.println("CLASS " + animal.getClass());
         System.out.println("Expired Date" + food.getExpiredDate());
         System.out.println("LocalDateTime.now() " + LocalDateTime.now());
         System.out.println("Animal class " + animal.getClass());
