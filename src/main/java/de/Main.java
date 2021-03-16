@@ -40,14 +40,13 @@ public class Main {
         for (Animal animal : animals) {
             if (animal.isHungry()) {
                 int randomInt = random.nextInt(3);
+                Food food = Food.builder()
+                        .expiredDate(LocalDateTime.now().plusMinutes(randomInt))
+                        .foodType(FoodType.values()[randomInt])
+                        .value(BigDecimal.valueOf(randomInt * 2 + 1)).build();
                 animal.voice();
-                animalService.feedAnimal(
-                        Food.builder()
-                                .expiredDate(LocalDateTime.now().plusMinutes(randomInt))
-                                .foodType(FoodType.values()[randomInt])
-                                .value(BigDecimal.valueOf(randomInt * 2 + 1)).build(),
-                        animal
-                );
+                animalService.checkRightFood(food, animal);
+                animalService.feedAnimal(food, animal);
             }
         }
     }
