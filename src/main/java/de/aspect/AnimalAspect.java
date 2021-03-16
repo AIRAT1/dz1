@@ -51,7 +51,7 @@ public class AnimalAspect {
 
     @AfterReturning(value = "execution(* de.zoo.Animal.isHungry())", returning = "isHungry")
     public void isHungry(boolean isHungry) {
-//        System.out.println(isHungry);
+        System.out.println(isHungry);
     }
 
 //    @AfterReturning(value = "execution(* de.zoo.Animal.getAge())", returning = "age")
